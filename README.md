@@ -68,7 +68,7 @@ sudo systemctl enable jenkins
 ```
 Now access Jenkins in your browser:
 
-http://<your-ec2-public-ip>:8080
+(http://<your-ec2-public-ip>:8080)
 🔑 7. Get Jenkins Admin Password
 ```bash
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
