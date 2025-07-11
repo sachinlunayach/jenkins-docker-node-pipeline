@@ -36,14 +36,14 @@ sudo apt install openjdk-17-jdk -y
 java -version
 ```
 🐳 3. Install Docker
+```bash
 sudo apt install docker.io -y
 sudo systemctl start docker
 sudo systemctl enable docker
 docker --version
+```
 👷 4. Install Jenkins
-bash
-Copy
-Edit
+```bash
 wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo tee \
   /usr/share/keyrings/jenkins-keyring.asc > /dev/null
 
@@ -53,20 +53,27 @@ echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
 
 sudo apt update -y
 sudo apt install jenkins -y
+```
 🔐 5. Allow Port 8080 (Firewall)
+```bash
 sudo ufw allow 8080
 sudo ufw reload
+```
 Or make sure port 8080 is allowed in AWS Security Group.
 
 🔄 6. Start and Enable Jenkins
+```bash
 sudo systemctl start jenkins
 sudo systemctl enable jenkins
+```
 Now access Jenkins in your browser:
 
 http://<your-ec2-public-ip>:8080
 🔑 7. Get Jenkins Admin Password
+```bash
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 Copy the password, paste it in the browser to unlock Jenkins.
+```
 
 🛠️ 8. Jenkins Dashboard Setup
 Install Suggested Plugins
@@ -76,18 +83,24 @@ Create your admin user
 Finish setup and go to Jenkins dashboard
 
 🔧 9. Give Docker Permission to Jenkins
+```bash
 sudo usermod -aG docker jenkins
 sudo usermod -aG docker ubuntu
 sudo systemctl restart docker
 sudo systemctl restart jenkins
+```
 Then reboot the system:
+```bash
 sudo reboot
+```
 ✅ This allows Jenkins to run Docker commands.
 
 🧪 Clone and Connect GitHub Repo
 📥 10. Clone This Repository (Optional for Local Testing)
+```bash
 git clone https://github.com/sachinlunayach/jenkins-docker-node-pipeline.git
 cd jenkins-docker-node-pipeline
+```
 🔧 11. Create a Jenkins Pipeline Job (Not Freestyle)
 Go to Jenkins dashboard → New Item
 
