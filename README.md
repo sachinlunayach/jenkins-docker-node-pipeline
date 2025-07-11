@@ -34,10 +34,8 @@ This project shows how to build a basic Jenkins Pipeline that runs inside a Dock
 sudo apt update -y
 sudo apt install openjdk-17-jdk -y
 java -version
+```
 🐳 3. Install Docker
-bash
-Copy
-Edit
 sudo apt install docker.io -y
 sudo systemctl start docker
 sudo systemctl enable docker
@@ -56,29 +54,17 @@ echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
 sudo apt update -y
 sudo apt install jenkins -y
 🔐 5. Allow Port 8080 (Firewall)
-bash
-Copy
-Edit
 sudo ufw allow 8080
 sudo ufw reload
 Or make sure port 8080 is allowed in AWS Security Group.
 
 🔄 6. Start and Enable Jenkins
-bash
-Copy
-Edit
 sudo systemctl start jenkins
 sudo systemctl enable jenkins
 Now access Jenkins in your browser:
 
-cpp
-Copy
-Edit
 http://<your-ec2-public-ip>:8080
 🔑 7. Get Jenkins Admin Password
-bash
-Copy
-Edit
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 Copy the password, paste it in the browser to unlock Jenkins.
 
@@ -90,26 +76,16 @@ Create your admin user
 Finish setup and go to Jenkins dashboard
 
 🔧 9. Give Docker Permission to Jenkins
-bash
-Copy
-Edit
 sudo usermod -aG docker jenkins
 sudo usermod -aG docker ubuntu
 sudo systemctl restart docker
 sudo systemctl restart jenkins
 Then reboot the system:
-
-bash
-Copy
-Edit
 sudo reboot
 ✅ This allows Jenkins to run Docker commands.
 
 🧪 Clone and Connect GitHub Repo
 📥 10. Clone This Repository (Optional for Local Testing)
-bash
-Copy
-Edit
 git clone https://github.com/sachinlunayach/jenkins-docker-node-pipeline.git
 cd jenkins-docker-node-pipeline
 🔧 11. Create a Jenkins Pipeline Job (Not Freestyle)
@@ -122,10 +98,6 @@ Select Pipeline → OK
 Scroll to Pipeline → Definition: Select Pipeline script from SCM
 
 Choose Git and paste this URL:
-
-arduino
-Copy
-Edit
 https://github.com/sachinlunayach/jenkins-docker-node-pipeline.git
 Script Path: Jenkinsfile
 
@@ -133,10 +105,6 @@ Save → Click Build Now
 
 ✅ Pipeline Output
 You should see output like:
-
-bash
-Copy
-Edit
 + node --version
 v16.xx.x
 🚀 Future Enhancements
@@ -157,11 +125,6 @@ GitHub: @sachinlunayach
 
 📝 License
 This project is licensed under the MIT License.
-
-yaml
-Copy
-Edit
-
 ---
 
 ### 💾 Step 4: Save the File
